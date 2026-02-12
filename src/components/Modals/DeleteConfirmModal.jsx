@@ -7,7 +7,7 @@ const DeleteConfirmModal = ({ visible, title, message, onCancel, onConfirm, conf
 
   return (
     <div className="pm-modal-overlay" onClick={onCancel}>
-      <div className="pm-modal" role="dialog" aria-modal="true" aria-labelledby="pm-delete-title" onClick={(e) => e.stopPropagation()}>
+      <div className="pm-modal compact" role="dialog" aria-modal="true" aria-labelledby="pm-delete-title" onClick={(e) => e.stopPropagation()}>
         <div className="pm-modal-header">
           <div>
             <h3 id="pm-delete-title" className="pm-title">{title}</h3>

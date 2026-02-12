@@ -1,10 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./modals.css";
 
 const AddEditProductModal = ({ visible, onClose, onSave, initialData, categories = [] }) => {
   const [form, setForm] = useState({ image: "", barcode: "", product: "", category: "", price: "", stock: "" });
-  const firstRef = useRef(null);
-
   useEffect(() => {
     if (initialData) setForm({
       image: initialData.image || "",
@@ -17,7 +15,7 @@ const AddEditProductModal = ({ visible, onClose, onSave, initialData, categories
     else setForm({ image: "", barcode: "", product: "", category: "", price: "", stock: "" });
   }, [initialData, visible]);
 
-  useEffect(() => { if (visible && firstRef.current) try { firstRef.current.focus(); } catch (e) {} }, [visible]);
+  
 
   if (!visible) return null;
 
@@ -40,7 +38,7 @@ const AddEditProductModal = ({ visible, onClose, onSave, initialData, categories
           <div className="pm-form-grid">
             <div className="full">
               <label>Image URL</label>
-              <input ref={firstRef} placeholder="Image URL" value={form.image} onChange={(e) => setForm((s) => ({ ...s, image: e.target.value }))} />
+              <input placeholder="Image URL" value={form.image} onChange={(e) => setForm((s) => ({ ...s, image: e.target.value }))} />
             </div>
             <div>
               <label>Barcode</label>

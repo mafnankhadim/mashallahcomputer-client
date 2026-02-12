@@ -1,10 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./modals.css";
 
 const AddEditJobModal = ({ visible, onClose, onSave, initialData }) => {
   const [form, setForm] = useState({ company: "", title: "", image: "", postDate: "", lastDate: "", location: "", description: "" });
-  const firstRef = useRef(null);
-
   useEffect(() => {
     if (initialData) setForm({
       company: initialData.company || "",
@@ -18,7 +16,7 @@ const AddEditJobModal = ({ visible, onClose, onSave, initialData }) => {
     else setForm({ company: "", title: "", image: "", postDate: "", lastDate: "", location: "", description: "" });
   }, [initialData, visible]);
 
-  useEffect(() => { if (visible && firstRef.current) try { firstRef.current.focus(); } catch (e) {} }, [visible]);
+  
 
   if (!visible) return null;
 
@@ -41,7 +39,7 @@ const AddEditJobModal = ({ visible, onClose, onSave, initialData }) => {
           <div className="pm-form-grid">
             <div>
               <label>Company</label>
-              <input ref={firstRef} placeholder="Company" value={form.company} onChange={(e) => setForm((s) => ({ ...s, company: e.target.value }))} />
+              <input placeholder="Company" value={form.company} onChange={(e) => setForm((s) => ({ ...s, company: e.target.value }))} />
             </div>
             <div>
               <label>Title</label>
