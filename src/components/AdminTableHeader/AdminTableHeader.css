@@ -1,0 +1,51 @@
+.table-heading-wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 24px; padding: 0 8px; }
+.table-heading { font-size: 24px; font-weight: 700; color: #111827; margin: 0; }
+.heading-controls { margin-left: auto; display: flex; gap: 12px; align-items: center; }
+.controls-actions { display: flex; gap: 12px; align-items: center; }
+.controls-search { display: flex; align-items: center; gap: 10px; }
+
+/* Keep the rest of appearance controlled by page/global CSS */
+
+/* Mobile: enforce consistent two-row header layout across admin pages */
+@media (max-width: 640px) {
+	.table-heading-wrap { flex-direction: column; align-items: stretch; gap: 16px; padding: 0; }
+	.table-heading { order: 1; width: 100%; text-align: center; font-size: 18px; }
+
+	.heading-controls { order: 2; display: flex; flex-direction: column; gap: 12px; width: 100%; margin-left: 0; }
+
+	/* Row 1: dropdown + search (never wrap to next line) */
+	.controls-search { order: 1; display: flex; gap: 10px; width: 100%; align-items: center; }
+	.controls-search .category-select { flex: 0 0 36%; min-width: 120px; }
+	.controls-search .table-search { flex: 1 1 auto; min-width: 0; }
+
+	/* Row 2: actions (add/export) — force two buttons to share the row */
+	.controls-actions { order: 2; display: flex; gap: 8px; justify-content: center; width: 100%; flex-wrap: nowrap; }
+	.printmax_btn { flex: 0 0 48%; }
+	.printmax_btn .add-category { width: 100%; }
+}
+
+/* Shared category-select pill styling (used by Products and Jobs headers) */
+.category-select {
+	-webkit-appearance: none;
+	appearance: none;
+	border: 1px solid #e6f6ef;
+	background: #ffffff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 20 20'><path fill='%23065646' d='M5.25 7.5l4.75 4.5 4.75-4.5' /></svg>") no-repeat right 14px center/18px 18px;
+	color: #0f172a;
+	padding: 10px 44px 10px 16px; /* leave room for arrow */
+	border-radius: 50px;
+	min-width: 140px;
+	font-weight: 600;
+	box-shadow: 0 2px 6px rgba(2,6,23,0.04);
+	cursor: pointer;
+	transition: background-color .12s ease, border-color .12s ease, box-shadow .12s ease;
+}
+
+.category-select::-ms-expand { display: none; }
+
+.category-select:focus {
+	outline: none;
+	border-color: #10b981;
+	box-shadow: 0 6px 18px rgba(16,185,129,0.12);
+}
+
+.category-select option { background: #ffffff; color: #0f172a; }

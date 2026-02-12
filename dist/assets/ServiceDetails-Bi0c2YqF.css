@@ -1,0 +1,1 @@
+.accordion li a{cursor:pointer}.accordion li.active a i{transform:rotate(90deg)}.accordion li a i{transition:transform .3s ease}

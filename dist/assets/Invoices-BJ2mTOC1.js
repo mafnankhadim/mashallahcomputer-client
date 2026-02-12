@@ -1,0 +1,1 @@
+import{j as e}from"./index-Dgm2b_BD.js";const i=()=>e.jsxs("div",{className:"admin-page",children:[e.jsx("h2",{children:"Invoices"}),e.jsx("p",{children:"This is the Invoices admin page (placeholder)."})]});export{i as default};

@@ -1,0 +1,306 @@
+/* ============================================
+   Job Section - Professional Styling
+============================================ */
+
+.job_section {
+  background: #fff;
+}
+
+/* Job Card Container */
+.single-blog-box.job_card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  margin-bottom: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Make job list columns stretch so all cards are equal height */
+.job_section .row[role="list"] > [class*="col-"] {
+  display: flex;
+}
+
+.single-blog-box.job_card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.single-blog-box.job_card .job_content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+/* Push footer to bottom so cards align */
+.single-blog-box.job_card .job_footer {
+  margin-top: auto;
+}
+
+/* Ensure thumbnail image doesn't distort when card height grows */
+.single-blog-thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Job Badge on Image */
+.job_badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 10;
+}
+
+.job_badge .badge_type {
+  display: inline-block;
+  background: #3dc595;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: "Inter", sans-serif;
+}
+
+/* Job Content Area */
+.job_content {
+  padding: 24px;
+  background: #fff;
+}
+
+/* Meta Top - Company & Location */
+.job_meta_top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 14px;
+  justify-content: space-between;
+}
+
+.job_meta_top span {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  color: #5d5f62;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+}
+
+.job_meta_top span i {
+  margin-right: 6px;
+  color: #3dc595;
+  font-size: 14px;
+}
+
+.job_company {
+  color: #1a1a1a !important;
+  font-weight: 600 !important;
+}
+
+/* Job Title */
+.job_title h3 {
+  margin-bottom: 12px;
+}
+
+.job_title h3 a {
+  display: block;
+  font-size: 20px;
+  line-height: 28px;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  transition: color 0.3s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.job_title h3 a:hover {
+  color: #3dc595;
+}
+
+/* Job Description */
+.job_description {
+  font-size: 15px;
+  line-height: 24px;
+  color: #5d5f62;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-family: "Cabin", sans-serif;
+}
+
+/* Job Footer - Date, Employment, Button */
+.job_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 18px;
+  border-top: 1px solid rgba(26, 26, 26, 0.08);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.job_info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.job_date {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  color: #5d5f62;
+  font-weight: 500;
+}
+
+/* Label before the date (e.g. Last Date, Posting Date) */
+.job_date_label {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 13px;
+  color: #7a7d80;
+  font-weight: 600;
+}
+
+.job_date i {
+  margin-right: 5px;
+  color: #3dc595;
+  font-size: 13px;
+}
+
+.job_employment {
+  display: inline-block;
+  background: #edf5f6;
+  color: #1a1a1a;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-family: "Inter", sans-serif;
+}
+
+/* Job Button */
+.job_btn.printmax_btn a {
+  padding: 10px 22px;
+  font-size: 14px;
+  border-radius: 22px;
+}
+
+.job_btn.printmax_btn a i {
+  font-size: 12px;
+  margin-left: 6px;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+.job_btn.printmax_btn a:hover i {
+  transform: translateX(4px);
+}
+
+/* View All Jobs Button */
+.view_all_btn {
+  margin-top: 20px;
+}
+
+.view_all_btn.printmax_btn a {
+  padding: 14px 40px;
+  font-size: 16px;
+  background: transparent;  
+  border: 2px solid #3dc595;
+  color: #3dc595;
+}
+
+.view_all_btn.printmax_btn a:hover {
+  background: #3dc595;
+  color: #fff;
+}
+
+.view_all_btn.printmax_btn a:hover span {
+  background-color: #3dc595;
+}
+
+.view_all_btn.printmax_btn a i {
+  margin-left: 10px;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+.view_all_btn.printmax_btn a:hover i {
+  transform: translateX(4px);
+}
+
+/* ============================================
+   Responsive Styles
+============================================ */
+
+@media (max-width: 991px) {
+  .job_title h3 a {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .job_content {
+    padding: 20px;
+  }
+
+  .job_footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .job_btn.printmax_btn {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .job_btn.printmax_btn a {
+    display: block;
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .job_meta_top {
+    gap: 10px;
+  }
+
+  .job_meta_top span {
+    font-size: 13px;
+  }
+
+  .job_description {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .job_info {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 575px) {
+  .job_content {
+    padding: 16px;
+  }
+
+  .job_title h3 a {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .job_badge .badge_type {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+}

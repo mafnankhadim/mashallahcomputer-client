@@ -1,0 +1,17 @@
+/* About Area - Custom additions only */
+/* Base styles are in public/assets/css/style.css */
+
+/* Increase left about image size */
+.about_thumb_inner img {
+  width: 420px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+@media (max-width: 991px) {
+  .about_thumb_inner img {
+    width: 100%;
+  }
+}

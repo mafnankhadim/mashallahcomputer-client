@@ -1,0 +1,18 @@
+/* Main CSS imports are handled in index.html */
+/* Additional custom styles can be added here */
+
+/* Ensure main content is visible */
+#root {
+  min-height: 100vh;
+}
+
+/* Fix for content visibility after preloader */
+body {
+  overflow-x: hidden;
+}
+
+/* Ensure sections are visible */
+section {
+  visibility: visible !important;
+  opacity: 1 !important;
+}

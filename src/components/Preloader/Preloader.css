@@ -1,0 +1,189 @@
+/* Preloader - Custom additions only */
+/* Base styles are in public/assets/css/style.css */
+
+/* Logo container for preloader */
+.loading-screen .animation-preloader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loading-screen .animation-preloader .logo-container {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  margin: 0 auto 2em auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-screen .animation-preloader .spinner-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 5px solid #e2dfdd;
+  border-top-color: #1a1a1a;
+  animation: spinner 1s infinite linear;
+}
+
+.loading-screen .animation-preloader .preloader-logo {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  z-index: 2;
+}
+
+.loading-screen .animation-preloader .preloader-text {
+  text-align: center;
+}
+
+.loading-screen .animation-preloader .preloader-brand {
+  font:
+    bold 5em "Poppins",
+    sans-serif;
+  color: #1a1a1a;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 0.2em 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.loading-screen .animation-preloader .preloader-tagline {
+  font:
+    500 1.2em "Poppins",
+    sans-serif;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Hidden state - matches jQuery fadeOut(500) */
+.loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.5s ease-out,
+    visibility 0.5s ease-out;
+}
+
+/* Fade out animation */
+.loading-screen.fade-out {
+  animation: fadeOutPreloader 0.5s ease-out forwards;
+}
+
+@keyframes fadeOutPreloader {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@-webkit-keyframes spinner {
+  to {
+    -webkit-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes spinner {
+  to {
+    -webkit-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+
+@-webkit-keyframes letters-loading {
+  0%,
+  75%,
+  100% {
+    opacity: 0;
+    -webkit-transform: rotateY(-90deg);
+    transform: rotateY(-90deg);
+  }
+
+  25%,
+  50% {
+    opacity: 1;
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes letters-loading {
+  0%,
+  75%,
+  100% {
+    opacity: 0;
+    -webkit-transform: rotateY(-90deg);
+    transform: rotateY(-90deg);
+  }
+
+  25%,
+  50% {
+    opacity: 1;
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .loading-screen .animation-preloader .spinner {
+    height: 8em;
+    width: 8em;
+  }
+  .loading-screen .animation-preloader .txt-loading {
+    font:
+      bold 3.5em "",
+      sans-serif;
+  }
+  .loading-screen .animation-preloader .logo-container {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1.5em;
+  }
+  .loading-screen .animation-preloader .preloader-logo {
+    width: 100px;
+    height: 100px;
+  }
+  .loading-screen .animation-preloader .preloader-brand {
+    font-size: 2.5em;
+    letter-spacing: 0.05em;
+  }
+  .loading-screen .animation-preloader .preloader-tagline {
+    font-size: 0.85em;
+    letter-spacing: 0.1em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .loading-screen .animation-preloader .logo-container {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1em;
+  }
+  .loading-screen .animation-preloader .preloader-logo {
+    width: 90px;
+    height: 90px;
+  }
+  .loading-screen .animation-preloader .preloader-brand {
+    font-size: 1.8em;
+    letter-spacing: 0.03em;
+  }
+  .loading-screen .animation-preloader .preloader-tagline {
+    font-size: 0.7em;
+    letter-spacing: 0.05em;
+  }
+  .loading-screen .animation-preloader .spinner-ring {
+    border-width: 3px;
+  }
+}

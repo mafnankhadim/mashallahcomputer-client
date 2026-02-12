@@ -1,0 +1,17 @@
+/* Testimonial Area - Custom additions only */
+/* Base styles are in public/assets/css/style.css */
+
+/* Owl Carousel button reset for React */
+.testimonial .owl-nav button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Mobile responsive - hide arrows on small screens */
+@media (max-width: 599px) {
+  .testimonial .owl-nav {
+    display: none;
+  }
+}

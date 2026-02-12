@@ -1,0 +1,12 @@
+/* About Page Specific Styles */
+
+/* Breadcrumb area styles are already in main CSS */
+
+/* Additional styles specific to About page if needed */
+.about_area .about_thumb {
+  position: relative;
+}
+
+.inner_page.brand_area {
+  padding: 80px 0;
+}

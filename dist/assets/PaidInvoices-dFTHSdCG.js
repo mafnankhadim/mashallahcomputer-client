@@ -1,0 +1,1 @@
+import{j as e}from"./index-Dgm2b_BD.js";const s=()=>e.jsxs("div",{className:"admin-page",children:[e.jsx("h2",{children:"Paid Invoices"}),e.jsx("p",{children:"List of invoices that have been paid."})]});export{s as default};

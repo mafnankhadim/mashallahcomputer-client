@@ -1,0 +1,58 @@
+/* Shared Admin base styles and variables */
+:root{
+  --admin-bg: #f4f6f9;
+  --card-bg: #fff;
+  --muted: #9ca3af;
+  --accent: #00d4aa;
+  --text: #111827;
+}
+
+* { box-sizing: border-box; }
+
+body, .admin-layout { font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--admin-bg);
+}
+
+.admin-main {
+  flex: 1;
+  margin-left: 260px;
+  transition: margin-left 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.admin-layout.sidebar-collapsed .admin-main {
+  margin-left: 70px;
+}
+
+.admin-sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  display: none;
+}
+
+.admin-layout:not(.sidebar-collapsed) .admin-sidebar-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.admin-content-area {
+  padding: 24px;
+  flex: 1;
+}
+
+@media (max-width: 991px) {
+  .admin-sidebar-overlay { display: block; }
+  .admin-main { margin-left: 0; }
+  .admin-layout.sidebar-collapsed .admin-main { margin-left: 0; }
+}

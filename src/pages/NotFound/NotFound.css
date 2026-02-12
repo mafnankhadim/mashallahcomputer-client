@@ -1,0 +1,117 @@
+/* Simple 404 layout matching provided screenshot */
+.nf-simple-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 160px);
+  padding: 60px 16px;
+  background: linear-gradient(180deg, #f7fbfb 0%, #ffffff 100%);
+}
+
+.nf-simple-container { width: 100%; display:flex; justify-content:center; }
+
+.nf-simple-card {
+  max-width: 720px;
+  width: 100%;
+  border-radius: 6px;
+  padding: 48px 48px 38px;
+  text-align: center;
+}
+
+.nf-simple-404 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 140px;
+  line-height: 1;
+  color: #222222;
+  margin-bottom: 6px;
+}
+
+.nf-simple-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 34px;
+  margin: 6px 0 8px;
+  color: #222222;
+}
+
+.nf-simple-desc { color: #6b7782; margin-bottom: 22px; }
+
+.nf-simple-btn {
+  display: inline-block;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 12px 18px;
+  background: #415a74; /* darker blue similar to screenshot */
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(65,90,116,0.14);
+}
+
+@media (max-width: 600px) {
+  .nf-simple-404 { font-size: 86px; }
+  .nf-simple-title { font-size: 22px; }
+  .nf-simple-card { padding: 28px 18px; }
+}
+
+/* Ensure printmax button in NotFound matches project hover effect */
+.nf-simple-card .printmax_btn {
+  display: inline-block;
+  position: relative;
+}
+.nf-simple-card .printmax_btn a {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 25px;
+  display: inline-block;
+  background: #3dc595;
+  transition: 0.4s;
+  border: none;
+  padding: 11px 33px;
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 500;
+  font-family: "Inter";
+}
+.nf-simple-card .printmax_btn span {
+  position: absolute;
+  z-index: -1;
+  width: 0;
+  height: 0;
+  display: block;
+  border-radius: 30px;
+  background-color: #1a1a1a;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+}
+.nf-simple-card .printmax_btn a:hover {
+  color: #3dc595;
+}
+.nf-simple-card .printmax_btn a:hover span {
+  width: 200%;
+  height: 500px;
+}
+
+
+
+/* Floating icons inside card */
+.float-icons { position: absolute; inset: auto 18px 18px auto; display: flex; gap: 10px; z-index: 3; }
+.float-icons .icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.9); box-shadow: 0 6px 18px rgba(13,38,59,0.06); font-size: 16px; transform-origin: center; }
+.float-icons .i1 { animation: floaty 5s ease-in-out infinite; }
+.float-icons .i2 { animation: floaty 6s ease-in-out infinite .2s; }
+.float-icons .i3 { animation: floaty 5.8s ease-in-out infinite .4s; }
+.float-icons .i4 { animation: floaty 6.2s ease-in-out infinite .6s; }
+
+@keyframes floaty { 0% { transform: translateY(0); } 50% { transform: translateY(-10px) rotate(-6deg); } 100% { transform: translateY(0); } }
+
+/* search and suggestions */
+.nf-search { margin-top: 18px; display:flex; justify-content:center; }
+.nf-search input { width: 380px; max-width: 80%; padding: 10px 14px; border-radius: 32px; border: 1px solid rgba(13,38,59,0.06); outline: none; box-shadow: 0 6px 20px rgba(13,38,59,0.04) inset; }
+.nf-suggestions { margin-top: 18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.suggestion { padding: 8px 14px; border-radius: 28px; background: rgba(61,197,149,0.08); color: #0d263b; text-decoration:none; font-weight:600; }
+
+

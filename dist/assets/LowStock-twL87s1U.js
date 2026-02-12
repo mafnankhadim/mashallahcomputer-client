@@ -1,0 +1,1 @@
+import{j as e}from"./index-Dgm2b_BD.js";const o=()=>e.jsxs("div",{className:"admin-page",children:[e.jsx("h2",{children:"Low Stock"}),e.jsx("p",{children:"Items below the configured stock threshold."})]});export{o as default};

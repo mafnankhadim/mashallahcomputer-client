@@ -1,0 +1,1 @@
+import{j as e}from"./index-Dgm2b_BD.js";const s=()=>e.jsxs("div",{className:"admin-page",children:[e.jsx("h2",{children:"Create Invoice (Sale)"}),e.jsx("p",{children:"This is a placeholder page to create a new sale/invoice (POS)."})]});export{s as default};

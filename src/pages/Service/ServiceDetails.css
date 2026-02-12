@@ -1,0 +1,13 @@
+/* Service Details Page Specific Styles */
+
+.accordion li a {
+  cursor: pointer;
+}
+
+.accordion li.active a i {
+  transform: rotate(90deg);
+}
+
+.accordion li a i {
+  transition: transform 0.3s ease;
+}

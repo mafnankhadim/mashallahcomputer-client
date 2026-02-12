@@ -1,0 +1,204 @@
+/* Header - Custom additions only */
+/* Base styles are in public/assets/css/style.css */
+
+/* Logo with Brand Name Styles - Custom for React components */
+.header-logo .logo-wrapper,
+.mobile-logo .logo-wrapper,
+.nav-logo .logo-wrapper {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 10px;
+}
+
+.header-logo .logo-img,
+.mobile-logo .logo-img,
+.nav-logo .logo-img {
+  width: 60px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
+}
+
+.brand-name {
+  font-family: "Cabin", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.brand-tagline {
+  font-family: "Inter", sans-serif;
+  font-size: 19px;
+  color: #3dc595;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+/* Sticky header logo text colors */
+.printmax-header-area.sticky_nav .brand-name {
+  color: #ffffff;
+}
+
+.printmax-header-area.sticky_nav .brand-tagline {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Mobile logo adjustments */
+.mobile-logo {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobile-logo .logo-wrapper {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobile-logo .logo-img {
+  width: 42px !important;
+  height: 42px !important;
+  object-fit: contain;
+  margin-left: 8px;
+}
+
+.mobile-logo .logo-text {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
+}
+
+.mobile-logo .brand-name {
+  font-size: 18px;
+  letter-spacing: 1.5px;
+}
+
+.mobile-logo .brand-tagline {
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  margin-top: 3px;
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .mobile-logo .brand-name {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+  .mobile-logo .brand-tagline {
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    color: #ffffff;
+  }
+  .mobile-logo .logo-img {
+    width: 38px !important;
+    height: 38px !important;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 380px) {
+  .mobile-logo .brand-name {
+    font-size: 14px;
+    letter-spacing: 0.8px;
+  }
+  .mobile-logo .brand-tagline {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+  }
+  .mobile-logo .logo-img {
+    width: 34px !important;
+    height: 34px !important;
+    margin-left: 5px;
+  }
+  .mobile-logo .logo-wrapper {
+    gap: 6px;
+  }
+}
+
+/* Sidebar logo */
+.nav-logo .logo-img {
+  width: 50px;
+  height: 50px;
+}
+
+.nav-logo .brand-name {
+  color: #ffffff;
+}
+
+.nav-logo .brand-tagline {
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+/* React state classes */
+.sidebar-menu-wrapper.isActive .cart_sidebar {
+  right: 0;
+}
+
+.xs-sidebar-group.isActive .xs-sidebar-widget {
+  right: 0;
+}
+
+.xs-sidebar-group.isActive .xs-overlay {
+  opacity: 0.8;
+  visibility: visible;
+}
+
+/* sticky_nav class addition for React (sticky class exists in style.css) */
+.printmax-header-area.sticky_nav {
+  left: 0;
+  margin: auto;
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+  box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.1);
+  background: #3dc595 !important;
+  transition: 0.5s;
+  z-index: 999;
+}
+
+.printmax-header-area.sticky_nav .active_logo {
+  display: none;
+}
+
+.printmax-header-area.sticky_nav .logo_two {
+  display: block !important;
+}
+
+.printmax-header-area.sticky_nav .header-menu ul li a {
+  color: #fff;
+}
+
+.printmax-header-area.sticky_nav .header-menu ul li a i,
+.printmax-header-area.sticky_nav .header-menu ul li span i {
+  color: #fff;
+}
+
+.printmax-header-area.sticky_nav .header_right .cart_btn {
+  background: #fff;
+}
+
+.printmax-header-area.sticky_nav .header-button a {
+  border: 1px solid #fff !important;
+}
+
+.printmax-header-area.sticky_nav .header-menu > ul > li > a:before {
+  background: #fff;
+}
