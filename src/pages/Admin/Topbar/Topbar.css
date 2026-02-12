@@ -280,7 +280,7 @@
     right: 8px;
     width: auto;
     max-width: calc(100vw - 16px);
-    max-height: calc(100vh - 80px);
+    max-height: 60vh;
     overflow: auto;
     border-radius: 8px;
     box-shadow: 0 12px 30px rgba(2,6,23,0.16);

@@ -21,12 +21,12 @@ const CategoryPage = () => {
   const columns = useMemo(
     () => [
       {
-        header: "Category",
-        accessorKey: "category",
-      },
-      {
         header: "Code",
         accessorKey: "code",
+      },
+      {
+        header: "Category",
+        accessorKey: "category",
       },
       {
         header: "Action",
