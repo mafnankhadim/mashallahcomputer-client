@@ -1,3 +1,24 @@
 /* Products page local styles: shared header and action-icon styles moved to
    `AdminTableHeader.css` and `Category.css`. Keep product-specific overrides here. */
 
+/* clickable product cell link styling */
+.product-link {
+   color: inherit;
+   text-decoration: none;
+   cursor: default;
+   transition: text-decoration-color 180ms ease, text-decoration-thickness 180ms ease;
+   text-decoration-thickness: 2px;
+   text-underline-offset: 3px;
+}
+
+.product-link:hover,
+.product-link:focus {
+   text-decoration: underline;
+   text-decoration-color: var(--pm-accent, #00d4aa);
+   cursor: pointer;
+}
+
+.product-link:focus {
+   outline: none;
+}
+

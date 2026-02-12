@@ -5,6 +5,7 @@ import ProTable from "../../../components/ProTable/ProTable";
 import AdminTableHeader from "../../../components/AdminTableHeader/AdminTableHeader";
 import DeleteConfirmModal from "../../../components/Modals/DeleteConfirmModal";
 import AddEditCategoryModal from "../../../components/Modals/AddEditCategoryModal";
+import ViewModal from "../../../components/Modals/ViewModal";
 
 const sampleData = [
   { id: 1, category: "Cooking", code: "E23436" },
@@ -20,7 +21,8 @@ const CategoryPage = () => {
   const [rowToDelete, setRowToDelete] = useState(null);
   const [showAddEdit, setShowAddEdit] = useState(false);
   const [editingRow, setEditingRow] = useState(null);
-
+  const [showView, setShowView] = useState(false);
+  const [viewItem, setViewItem] = useState(null);
   const columns = useMemo(
     () => [
       {
@@ -30,6 +32,17 @@ const CategoryPage = () => {
       {
         header: "Category",
         accessorKey: "category",
+        cell: ({ row, getValue }) => (
+          <span
+            className="product-link"
+            onClick={() => {
+              setViewItem(row.original);
+              setShowView(true);
+            }}
+          >
+            {getValue()}
+          </span>
+        ),
       },
       {
         header: "Action",
@@ -43,23 +56,21 @@ const CategoryPage = () => {
                 setShowAddEdit(true);
               }}
               title="Edit"
-              aria-label={`Edit ${row.original.code}`}
-            >
+              aria-label={`Edit ${row.original.code}`}>
               <i className="bi bi-pencil" aria-hidden="true" />
             </button>
             <button
               className="icon-btn"
               onClick={() => setRowToDelete(row.original)}
               title="Delete"
-              aria-label={`Delete ${row.original.code}`}
-            >
+              aria-label={`Delete ${row.original.code}`}>
               <i className="bi bi-trash" aria-hidden="true" />
             </button>
           </div>
         ),
       },
     ],
-    []
+    [setEditingRow, setShowAddEdit, setRowToDelete, setShowView, setViewItem]
   );
 
   const tableRef = useRef(null);
@@ -109,6 +120,15 @@ const CategoryPage = () => {
             confirmLabel="Delete"
           />
         )}
+
+        <ViewModal visible={showView} title="Category details" onClose={() => setShowView(false)}>
+          {viewItem && (
+            <div>
+              <p><strong>Category:</strong> {viewItem.category}</p>
+              <p><strong>Code:</strong> {viewItem.code}</p>
+            </div>
+          )}
+        </ViewModal>
 
         <AddEditCategoryModal
           visible={showAddEdit}

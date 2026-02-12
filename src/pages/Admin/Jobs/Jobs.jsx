@@ -53,7 +53,21 @@ const JobsPage = () => {
         ),
       },
       { header: "Job ID", accessorKey: "id" },
-      { header: "Title", accessorKey: "title" },
+      {
+        header: "Title",
+        accessorKey: "title",
+        cell: ({ row, getValue }) => (
+          <span
+            className="product-link"
+            onClick={() => {
+              setViewItem(row.original);
+              setShowView(true);
+            }}
+          >
+            {getValue()}
+          </span>
+        ),
+      },
       { header: "Company", accessorKey: "company" },
       {
         header: "Description",

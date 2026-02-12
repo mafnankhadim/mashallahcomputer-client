@@ -36,7 +36,13 @@ const ProductsPage = () => {
         ),
       },
       { header: "Barcode", accessorKey: "barcode" },
-      { header: "Product", accessorKey: "product" },
+      {
+        header: "Product",
+        accessorKey: "product",
+        cell: ({ row, getValue }) => (
+          <span className="product-link" onClick={() => { setViewItem(row.original); setShowView(true); }}>{getValue()}</span>
+        ),
+      },
       { header: "Category", accessorKey: "category" },
       {
         header: "Price",
@@ -72,7 +78,7 @@ const ProductsPage = () => {
         ),
       },
     ],
-    []
+    [setShowAddEdit, setEditingRow, setRowToDelete, setShowView, setViewItem]
   );
 
   const tableRef = useRef(null);

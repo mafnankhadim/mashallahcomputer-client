@@ -6,7 +6,9 @@
   --pm-padding: 36px;
   --pm-gap: 18px;
   --pm-max-width: 760px;
-  --pm-transition: 220ms cubic-bezier(.2, .9, .2, 1);
+  --pm-ease: cubic-bezier(.16, .84, .4, 1);
+  --pm-transition: 260ms var(--pm-ease);
+  --pm-overlay-transition: 180ms var(--pm-ease);
   --pm-shadow: 0 34px 80px rgba(2,6,23,0.22), 0 12px 36px rgba(2,6,23,0.08);
   --pm-accent: var(--accent, #00d4aa);
   --pm-text: #0f172a;
@@ -25,7 +27,8 @@
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   /* fade overlay in */
-  animation: pm-fade-in var(--pm-transition) both;
+  animation: pm-fade-in var(--pm-overlay-transition) both;
+  will-change: opacity;
 }
 
 @keyframes pm-fade-in {
@@ -55,6 +58,8 @@
   transform: translateY(6px);
   /* slide + fade on show */
   animation: pm-slide-up var(--pm-transition) both, pm-fade-in var(--pm-transition) both;
+  will-change: transform, opacity;
+  transform-origin: center top;
   position: relative;
   border: 1px solid rgba(15,23,42,0.04);
   box-sizing: border-box;
@@ -83,6 +88,27 @@
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+/* subtle fade-out for overlay */
+@keyframes pm-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* slide + fade out for modal */
+@keyframes pm-slide-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(12px) scale(.995); }
+}
+
+/* closing classes (JS should add .closing before unmount to show exit animation) */
+.pm-modal.closing {
+  animation: pm-slide-out var(--pm-transition) both;
+}
+
+.pm-modal-overlay.closing {
+  animation: pm-fade-out var(--pm-overlay-transition) both;
 }
 
 /* header */
