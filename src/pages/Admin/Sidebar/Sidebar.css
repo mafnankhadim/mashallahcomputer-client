@@ -291,3 +291,10 @@
     transform: translateX(-100%);
   }
 }
+
+@media (max-width: 640px) {
+.admin-sidebar{
+  top: 60px;
+  height: calc(100% - 60px);
+}
+}

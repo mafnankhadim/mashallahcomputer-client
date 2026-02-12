@@ -24,17 +24,19 @@ body, .admin-layout { font-family: "Inter", system-ui, -apple-system, "Segoe UI"
   display: flex;
   flex-direction: column;
   min-width: 0;
+  padding-top: 60px; /* reserve space for fixed topbar */
 }
 
 .admin-layout.sidebar-collapsed .admin-main {
   margin-left: 70px;
+  padding-top: 60px;
 }
 
 .admin-sidebar-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
-  z-index: 9999;
+  z-index: 9980; /* keep below the topbar */
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
@@ -55,4 +57,5 @@ body, .admin-layout { font-family: "Inter", system-ui, -apple-system, "Segoe UI"
   .admin-sidebar-overlay { display: block; }
   .admin-main { margin-left: 0; }
   .admin-layout.sidebar-collapsed .admin-main { margin-left: 0; }
+  .admin-main { padding-top: 60px; }
 }

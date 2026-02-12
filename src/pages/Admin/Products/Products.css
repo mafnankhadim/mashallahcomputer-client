@@ -1,7 +1,3 @@
-/* Products page local styles: shared header and action-icon styles moved to
-   `AdminTableHeader.css` and `Category.css`. Keep product-specific overrides here. */
-
-/* clickable product cell link styling */
 .product-link {
    color: inherit;
    text-decoration: none;

@@ -2,10 +2,24 @@
 .admin-topbar {
   background: #fff;
   border-bottom: 1px solid #e9ecef;
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 9999;
+  left: 0;
+  width: 100%;
+  z-index: 10050; /* sit above the sidebar overlay */
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  transition: left .22s ease, width .22s ease, box-shadow .18s ease;
+  will-change: left, width;
+}
+
+/* Offset the topbar to align with main content when sidebar is open/collapsed */
+.admin-layout:not(.sidebar-collapsed) .admin-topbar {
+  left: 260px;
+  width: calc(100% - 260px);
+}
+.admin-layout.sidebar-collapsed .admin-topbar {
+  left: 70px;
+  width: calc(100% - 70px);
 }
 
 .admin-topbar-inner {
@@ -269,6 +283,11 @@
   .admin-topbar-inner {
     padding: 0 16px;
   }
+}
+
+@media (max-width: 991px) {
+  /* On smaller screens the sidebar is typically overlaid; make topbar full-width */
+  .admin-topbar { left: 0 !important; width: 100% !important; }
 }
 
 @media (max-width: 576px) {
