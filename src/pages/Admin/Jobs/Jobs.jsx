@@ -4,7 +4,9 @@ import "../Category/Category.css";
 import "./Jobs.css";
 import ProTable from "../../../components/ProTable/ProTable";
 import AdminTableHeader from "../../../components/AdminTableHeader/AdminTableHeader";
-import ConfirmModal from "../../../components/ConfirmModal/ConfirmModal";
+import DeleteConfirmModal from "../../../components/Modals/DeleteConfirmModal";
+import AddEditJobModal from "../../../components/Modals/AddEditJobModal";
+import ViewModal from "../../../components/Modals/ViewModal";
 
 const sampleJobs = [
   {
@@ -36,16 +38,10 @@ const JobsPage = () => {
   const [globalFilter, setGlobalFilter] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [rowToDelete, setRowToDelete] = useState(null);
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [newJob, setNewJob] = useState({
-    company: "",
-    title: "",
-    image: "",
-    postDate: "",
-    lastDate: "",
-    location: "",
-    description: "",
-  });
+  const [showAddEdit, setShowAddEdit] = useState(false);
+  const [editingRow, setEditingRow] = useState(null);
+  const [showView, setShowView] = useState(false);
+  const [viewItem, setViewItem] = useState(null);
 
   const columns = useMemo(
     () => [
@@ -78,7 +74,10 @@ const JobsPage = () => {
           <div className="row-action">
             <button
               className="icon-btn"
-              onClick={() => alert(`Edit ${row.original.title}`)}
+              onClick={() => {
+                setEditingRow(row.original);
+                setShowAddEdit(true);
+              }}
               title="Edit"
             >
               <i className="bi bi-pencil" aria-hidden="true" />
@@ -133,7 +132,7 @@ const JobsPage = () => {
           categories={categories}
           selectedCategory={selectedCategory}
           onCategoryChange={setSelectedCategory}
-          onAdd={() => setShowAddModal(true)}
+          onAdd={() => { setEditingRow(null); setShowAddEdit(true); }}
           addLabel="+ Add job"
           onExport={exportCSV}
           globalFilter={globalFilter}
@@ -151,89 +150,47 @@ const JobsPage = () => {
         />
 
         {rowToDelete && (
-          <ConfirmModal
+          <DeleteConfirmModal
             title="Delete job"
             message={`Are you sure you want to delete ${rowToDelete.title}?`}
             onCancel={() => setRowToDelete(null)}
             onConfirm={() => {
-              alert(`Deleted ${rowToDelete.title}`);
+              setData((d) => d.filter((i) => i.id !== rowToDelete.id));
               setRowToDelete(null);
             }}
             confirmLabel="Delete"
           />
         )}
 
-        {showAddModal && (
-          <div className="modal-overlay" onClick={() => setShowAddModal(false)}>
-            <div className="modal" onClick={(e) => e.stopPropagation()}>
-              <h4>Add job</h4>
+        <AddEditJobModal
+          visible={showAddEdit}
+          initialData={editingRow}
+          onClose={() => setShowAddEdit(false)}
+          onSave={(payload) => {
+            if (payload && payload.id) {
+              setData((d) => d.map((r) => (r.id === payload.id ? { ...r, ...payload } : r)));
+            } else {
+              const id = `J-${Date.now()}`;
+              setData((d) => [{ id, ...payload }, ...d]);
+            }
+            setShowAddEdit(false);
+          }}
+        />
 
-              <div style={{ display: "grid", gap: 8 }}>
-                <input
-                  placeholder="Company"
-                  value={newJob.company}
-                  onChange={(e) => setNewJob((s) => ({ ...s, company: e.target.value }))}
-                />
-                <input
-                  placeholder="Title"
-                  value={newJob.title}
-                  onChange={(e) => setNewJob((s) => ({ ...s, title: e.target.value }))}
-                />
-                <input
-                  placeholder="Image URL"
-                  value={newJob.image}
-                  onChange={(e) => setNewJob((s) => ({ ...s, image: e.target.value }))}
-                />
-                <input
-                  placeholder="Post Date (e.g. 01 FEB, 2026)"
-                  value={newJob.postDate}
-                  onChange={(e) => setNewJob((s) => ({ ...s, postDate: e.target.value }))}
-                />
-                <input
-                  placeholder="Last Date (e.g. 15 FEB, 2026)"
-                  value={newJob.lastDate}
-                  onChange={(e) => setNewJob((s) => ({ ...s, lastDate: e.target.value }))}
-                />
-                <input
-                  placeholder="Location"
-                  value={newJob.location}
-                  onChange={(e) => setNewJob((s) => ({ ...s, location: e.target.value }))}
-                />
-                <textarea
-                  placeholder="Long description"
-                  rows={4}
-                  value={newJob.description}
-                  onChange={(e) => setNewJob((s) => ({ ...s, description: e.target.value }))}
-                />
-              </div>
-
-              <div style={{ display: "flex", gap: 8, justifyContent: "flex-end", marginTop: 12 }}>
-                <button className="btn" onClick={() => setShowAddModal(false)}>
-                  Cancel
-                </button>
-                <button
-                  className="btn"
-                  onClick={() => {
-                    if (!newJob.title) {
-                      alert("Please enter a job title");
-                      return;
-                    }
-                    const id = `J-${Date.now()}`;
-                    const created = {
-                      id,
-                      ...newJob,
-                    };
-                    setData((d) => [created, ...d]);
-                    setShowAddModal(false);
-                    setNewJob({ company: "", title: "", image: "", postDate: "", lastDate: "", location: "", description: "" });
-                  }}
-                >
-                  Save
-                </button>
-              </div>
+        <ViewModal visible={showView} title="Job details" onClose={() => setShowView(false)}>
+          {viewItem && (
+            <div>
+              <img src={viewItem.image} alt={viewItem.title} style={{ maxWidth: "100%", marginBottom: 8 }} />
+              <p><strong>ID:</strong> {viewItem.id}</p>
+              <p><strong>Company:</strong> {viewItem.company}</p>
+              <p><strong>Title:</strong> {viewItem.title}</p>
+              <p><strong>Location:</strong> {viewItem.location}</p>
+              <p><strong>Post Date:</strong> {viewItem.postDate}</p>
+              <p><strong>Last Date:</strong> {viewItem.lastDate}</p>
+              <p><strong>Description:</strong> {viewItem.description}</p>
             </div>
-          </div>
-        )}
+          )}
+        </ViewModal>
       </div>
     </div>
   );

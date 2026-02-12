@@ -4,7 +4,9 @@ import "../Category/Category.css";
 import "./Products.css";
 import ProTable from "../../../components/ProTable/ProTable";
 import AdminTableHeader from "../../../components/AdminTableHeader/AdminTableHeader";
-import ConfirmModal from "../../../components/ConfirmModal/ConfirmModal";
+import DeleteConfirmModal from "../../../components/Modals/DeleteConfirmModal";
+import AddEditProductModal from "../../../components/Modals/AddEditProductModal";
+import ViewModal from "../../../components/Modals/ViewModal";
 
 const sampleProducts = [
   { id: 1, image: "https://picsum.photos/seed/product1/200/200", barcode: "8901234567890", product: "Kitchen Knife", category: "Cooking", price: 24.99, stock: 32 },
@@ -15,10 +17,14 @@ const sampleProducts = [
 ];
 
 const ProductsPage = () => {
-  const [data] = useState(() => sampleProducts);
+  const [data, setData] = useState(() => sampleProducts);
   const [globalFilter, setGlobalFilter] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [rowToDelete, setRowToDelete] = useState(null);
+  const [showAddEdit, setShowAddEdit] = useState(false);
+  const [editingRow, setEditingRow] = useState(null);
+  const [showView, setShowView] = useState(false);
+  const [viewItem, setViewItem] = useState(null);
 
   const columns = useMemo(
     () => [
@@ -45,7 +51,10 @@ const ProductsPage = () => {
           <div className="row-action">
             <button
               className="icon-btn"
-                onClick={() => alert(`Edit ${row.original.product}`)}
+                onClick={() => {
+                  setEditingRow(row.original);
+                  setShowAddEdit(true);
+                }}
                 title="Edit"
                 aria-label={`Edit ${row.original.product}`}
             >
@@ -105,7 +114,10 @@ const ProductsPage = () => {
           categories={categories}
           selectedCategory={selectedCategory}
           onCategoryChange={setSelectedCategory}
-          onAdd={() => alert("Add product")}
+          onAdd={() => {
+            setEditingRow(null);
+            setShowAddEdit(true);
+          }}
           addLabel="+ Add product"
           onExport={exportCSV}
           globalFilter={globalFilter}
@@ -123,17 +135,46 @@ const ProductsPage = () => {
         />
 
         {rowToDelete && (
-          <ConfirmModal
+          <DeleteConfirmModal
             title="Delete product"
             message={`Are you sure you want to delete ${rowToDelete.product}?`}
             onCancel={() => setRowToDelete(null)}
             onConfirm={() => {
-              alert(`Deleted ${rowToDelete.product}`);
+              setData((d) => d.filter((i) => i.id !== rowToDelete.id));
               setRowToDelete(null);
             }}
             confirmLabel="Delete"
           />
         )}
+
+        <AddEditProductModal
+          visible={showAddEdit}
+          initialData={editingRow}
+          categories={categories.filter((c) => c !== "All")}
+          onClose={() => setShowAddEdit(false)}
+          onSave={(payload) => {
+            if (payload && payload.id) {
+              setData((d) => d.map((r) => (r.id === payload.id ? { ...r, ...payload } : r)));
+            } else {
+              const id = Date.now();
+              setData((d) => [{ id, ...payload }, ...d]);
+            }
+            setShowAddEdit(false);
+          }}
+        />
+
+        <ViewModal visible={showView} title="Product details" onClose={() => setShowView(false)}>
+          {viewItem && (
+            <div>
+              <img src={viewItem.image} alt={viewItem.product} style={{ maxWidth: "100%", marginBottom: 8 }} />
+              <p><strong>Barcode:</strong> {viewItem.barcode}</p>
+              <p><strong>Product:</strong> {viewItem.product}</p>
+              <p><strong>Category:</strong> {viewItem.category}</p>
+              <p><strong>Price:</strong> ${Number(viewItem.price).toFixed(2)}</p>
+              <p><strong>Stock:</strong> {viewItem.stock}</p>
+            </div>
+          )}
+        </ViewModal>
       </div>
     </div>
   );
