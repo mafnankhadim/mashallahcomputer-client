@@ -1,19 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./modals.css";
 
 const AddEditJobModal = ({ visible, onClose, onSave, initialData }) => {
-  const [form, setForm] = useState({ company: "", title: "", image: "", lastDate: "", location: "", description: "" });
+  const [form, setForm] = useState({ company: "", title: "", image: "", imageFile: null, imagePreview: "", lastDate: "", location: "", description: "" });
+  const previewRef = useRef(null);
   useEffect(() => {
     if (initialData) setForm({
       company: initialData.company || "",
       title: initialData.title || "",
       image: initialData.image || "",
+      imagePreview: initialData.image || "",
+      imageFile: null,
       lastDate: initialData.lastDate || "",
       location: initialData.location || "",
       description: initialData.description || "",
     });
-    else setForm({ company: "", title: "", image: "", lastDate: "", location: "", description: "" });
+    else setForm({ company: "", title: "", image: "", imageFile: null, imagePreview: "", lastDate: "", location: "", description: "" });
   }, [initialData, visible]);
+
+  useEffect(() => {
+    return () => {
+      if (previewRef.current) {
+        try { URL.revokeObjectURL(previewRef.current); } catch (e) { }
+        previewRef.current = null;
+      }
+    };
+  }, []);
 
   
 
@@ -45,8 +57,27 @@ const AddEditJobModal = ({ visible, onClose, onSave, initialData }) => {
               <input placeholder="Title" value={form.title} onChange={(e) => setForm((s) => ({ ...s, title: e.target.value }))} />
             </div>
             <div className="full">
-              <label>Image URL</label>
-              <input placeholder="Image URL" value={form.image} onChange={(e) => setForm((s) => ({ ...s, image: e.target.value }))} />
+              <label>Image</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files && e.target.files[0];
+                  if (!file) return;
+                  if (!file.type.startsWith("image/")) { alert("Please select an image file (png, jpg, gif, etc.)"); return; }
+                  if (previewRef.current) {
+                    try { URL.revokeObjectURL(previewRef.current); } catch (err) { }
+                  }
+                  const preview = URL.createObjectURL(file);
+                  previewRef.current = preview;
+                  setForm((s) => ({ ...s, imageFile: file, imagePreview: preview, image: "" }));
+                }}
+              />
+              {form.imagePreview ? (
+                <div style={{ marginTop: 8 }}>
+                  <img src={form.imagePreview} alt="preview" style={{ maxWidth: "100%", maxHeight: 180, objectFit: "contain" }} />
+                </div>
+              ) : null}
             </div>
             <div>
               <label>Last Date</label>
@@ -67,7 +98,10 @@ const AddEditJobModal = ({ visible, onClose, onSave, initialData }) => {
           <button className="btn secondary" onClick={onClose}>Cancel</button>
           <button className="btn primary" onClick={() => {
             if (!form.title) { alert("Please enter a job title"); return; }
-            onSave && onSave({ ...initialData, ...form });
+            const out = { ...initialData, company: form.company, title: form.title, lastDate: form.lastDate, location: form.location, description: form.description };
+            if (form.imageFile) out.imageFile = form.imageFile;
+            else if (form.image) out.image = form.image;
+            onSave && onSave(out);
           }}>Save</button>
         </div>
       </div>
