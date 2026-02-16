@@ -14,7 +14,6 @@ const sampleJobs = [
     company: "WAPDA",
     title: "Assistant Executive Engineer (WAPDA)",
     image: "https://picsum.photos/seed/job1/200/140",
-    postDate: "01 FEB, 2026",
     lastDate: "15 FEB, 2026",
     location: "Nationwide",
     description:
@@ -25,7 +24,6 @@ const sampleJobs = [
     company: "Tech Solutions",
     title: "Frontend Engineer",
     image: "https://picsum.photos/seed/job2/200/140",
-    postDate: "28 JAN, 2026",
     lastDate: "10 FEB, 2026",
     location: "Lahore",
     description:
@@ -79,7 +77,6 @@ const JobsPage = () => {
         },
       },
       { header: "Location", accessorKey: "location" },
-      { header: "Post Date", accessorKey: "postDate" },
       { header: "Last Date", accessorKey: "lastDate" },
       {
         header: "Action",
@@ -199,7 +196,6 @@ const JobsPage = () => {
               <p><strong>Company:</strong> {viewItem.company}</p>
               <p><strong>Title:</strong> {viewItem.title}</p>
               <p><strong>Location:</strong> {viewItem.location}</p>
-              <p><strong>Post Date:</strong> {viewItem.postDate}</p>
               <p><strong>Last Date:</strong> {viewItem.lastDate}</p>
               <p><strong>Description:</strong> {viewItem.description}</p>
             </div>

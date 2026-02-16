@@ -9,11 +9,11 @@ import AddEditProductModal from "../../../components/Modals/AddEditProductModal"
 import ViewModal from "../../../components/Modals/ViewModal";
 
 const sampleProducts = [
-  { id: 1, image: "https://picsum.photos/seed/product1/200/200", barcode: "8901234567890", product: "Kitchen Knife", category: "Cooking", price: 24.99, stock: 32 },
-  { id: 2, image: "https://picsum.photos/seed/product2/200/200", barcode: "8901234567891", product: "Wireless Mouse", category: "Device", price: 19.5, stock: 120 },
-  { id: 3, image: "https://picsum.photos/seed/product3/200/200", barcode: "8901234567892", product: "Headphones", category: "Electronic", price: 49.0, stock: 54 },
-  { id: 4, image: "https://picsum.photos/seed/product4/200/200", barcode: "8901234567893", product: "Blender", category: "Cooking", price: 89.99, stock: 12 },
-  { id: 5, image: "https://picsum.photos/seed/product5/200/200", barcode: "8901234567894", product: "Smart Lamp", category: "Electronic", price: 34.75, stock: 8 },
+  { id: 1, image: "https://picsum.photos/seed/product1/200/200", product: "Kitchen Knife", category: "Cooking", price: 24.99, stock: 32 },
+  { id: 2, image: "https://picsum.photos/seed/product2/200/200", product: "Wireless Mouse", category: "Device", price: 19.5, stock: 120 },
+  { id: 3, image: "https://picsum.photos/seed/product3/200/200", product: "Headphones", category: "Electronic", price: 49.0, stock: 54 },
+  { id: 4, image: "https://picsum.photos/seed/product4/200/200", product: "Blender", category: "Cooking", price: 89.99, stock: 12 },
+  { id: 5, image: "https://picsum.photos/seed/product5/200/200", product: "Smart Lamp", category: "Electronic", price: 34.75, stock: 8 },
 ];
 
 const ProductsPage = () => {
@@ -35,7 +35,7 @@ const ProductsPage = () => {
           <img src={row.original.image} alt={row.original.product} className="product-thumb" />
         ),
       },
-      { header: "Barcode", accessorKey: "barcode" },
+      // Barcode removed per request
       {
         header: "Product",
         accessorKey: "product",
@@ -173,7 +173,6 @@ const ProductsPage = () => {
           {viewItem && (
             <div>
               <img src={viewItem.image} alt={viewItem.product} style={{ maxWidth: "100%", marginBottom: 8 }} />
-              <p><strong>Barcode:</strong> {viewItem.barcode}</p>
               <p><strong>Product:</strong> {viewItem.product}</p>
               <p><strong>Category:</strong> {viewItem.category}</p>
               <p><strong>Price:</strong> ${Number(viewItem.price).toFixed(2)}</p>
