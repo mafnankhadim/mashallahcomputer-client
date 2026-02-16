@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react";
 import "./modals.css";
 
 const AddEditJobModal = ({ visible, onClose, onSave, initialData }) => {
-  const [form, setForm] = useState({ company: "", title: "", image: "", postDate: "", lastDate: "", location: "", description: "" });
+  const [form, setForm] = useState({ company: "", title: "", image: "", lastDate: "", location: "", description: "" });
   useEffect(() => {
     if (initialData) setForm({
       company: initialData.company || "",
       title: initialData.title || "",
       image: initialData.image || "",
-      postDate: initialData.postDate || "",
       lastDate: initialData.lastDate || "",
       location: initialData.location || "",
       description: initialData.description || "",
     });
-    else setForm({ company: "", title: "", image: "", postDate: "", lastDate: "", location: "", description: "" });
+    else setForm({ company: "", title: "", image: "", lastDate: "", location: "", description: "" });
   }, [initialData, visible]);
 
   
@@ -48,10 +47,6 @@ const AddEditJobModal = ({ visible, onClose, onSave, initialData }) => {
             <div className="full">
               <label>Image URL</label>
               <input placeholder="Image URL" value={form.image} onChange={(e) => setForm((s) => ({ ...s, image: e.target.value }))} />
-            </div>
-            <div>
-              <label>Post Date</label>
-              <input placeholder="e.g. 01 FEB, 2026" value={form.postDate} onChange={(e) => setForm((s) => ({ ...s, postDate: e.target.value }))} />
             </div>
             <div>
               <label>Last Date</label>

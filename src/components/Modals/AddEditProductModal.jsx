@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./modals.css";
 
 const AddEditProductModal = ({ visible, onClose, onSave, initialData, categories = [] }) => {
-  const [form, setForm] = useState({ image: "", barcode: "", product: "", category: "", price: "", stock: "" });
+  const [form, setForm] = useState({ image: "", product: "", category: "", price: "", stock: "" });
   useEffect(() => {
     if (initialData) setForm({
       image: initialData.image || "",
-      barcode: initialData.barcode || "",
       product: initialData.product || "",
       category: initialData.category || "",
       price: initialData.price != null ? initialData.price : "",
       stock: initialData.stock != null ? initialData.stock : "",
     });
-    else setForm({ image: "", barcode: "", product: "", category: "", price: "", stock: "" });
+    else setForm({ image: "", product: "", category: "", price: "", stock: "" });
   }, [initialData, visible]);
 
   
@@ -40,10 +39,7 @@ const AddEditProductModal = ({ visible, onClose, onSave, initialData, categories
               <label>Image URL</label>
               <input placeholder="Image URL" value={form.image} onChange={(e) => setForm((s) => ({ ...s, image: e.target.value }))} />
             </div>
-            <div>
-              <label>Barcode</label>
-              <input placeholder="Barcode" value={form.barcode} onChange={(e) => setForm((s) => ({ ...s, barcode: e.target.value }))} />
-            </div>
+            
             <div>
               <label>Product</label>
               <input placeholder="Product name" value={form.product} onChange={(e) => setForm((s) => ({ ...s, product: e.target.value }))} />
