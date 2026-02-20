@@ -171,12 +171,19 @@ const ProductsPage = () => {
 
         <ViewModal visible={showView} title="Product details" onClose={() => setShowView(false)}>
           {viewItem && (
-            <div>
-              <img src={viewItem.image} alt={viewItem.product} style={{ maxWidth: "100%", marginBottom: 8 }} />
-              <p><strong>Product:</strong> {viewItem.product}</p>
-              <p><strong>Category:</strong> {viewItem.category}</p>
-              <p><strong>Price:</strong> ${Number(viewItem.price).toFixed(2)}</p>
-              <p><strong>Stock:</strong> {viewItem.stock}</p>
+            <div className="view-details">
+              <div className="view-image">
+                <img src={viewItem.image} alt={viewItem.product} />
+              </div>
+
+              <div className="view-meta">
+                <h4 style={{ marginTop: 0 }}>{viewItem.product}</h4>
+                <div className="meta-row"><strong>Category:</strong> <span>{viewItem.category}</span></div>
+                <div className="meta-row"><strong>Price:</strong> <span>${Number(viewItem.price).toFixed(2)}</span></div>
+                <div className="meta-row"><strong>Stock:</strong> <span>{viewItem.stock}</span></div>
+
+                {/* Read-only view: edit action removed for a professional, senior-developer style */}
+              </div>
             </div>
           )}
         </ViewModal>

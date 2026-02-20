@@ -18,3 +18,27 @@
    outline: none;
 }
 
+/* View modal professional layout */
+.view-details {
+   display: flex;
+   gap: 20px;
+   align-items: flex-start;
+}
+.view-details .view-image {
+   width: 220px;
+   flex: 0 0 220px;
+   border-radius: 8px;
+   overflow: hidden;
+   box-shadow: 0 8px 30px rgba(2,6,23,0.08);
+}
+.view-details .view-image img { display: block; width: 100%; height: auto; }
+.view-details .view-meta { flex: 1 1 auto; }
+.view-details .meta-row { margin-bottom: 14px; }
+.view-details .meta-row strong { display: inline-block; width: 120px; color: #0f172a; font-weight: 600; }
+.view-details .meta-row span { color: #475569; }
+
+/* refine heading and spacing for professional look */
+.view-details h4 { font-size: 20px; margin-bottom: 6px; color: #0b1220; }
+.view-details .view-meta { padding-top: 6px; }
+
+

@@ -90,6 +90,14 @@ const AdminSidebar = ({ collapsed, onToggle, onItemClick }) => {
                 <span className="menu-text">Low Stock</span>
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/admin/services" className={({ isActive }) => isActive ? "active" : ""} onClick={onItemClick}>
+                <span className="menu-icon">
+                  <i className="bi bi-gear" aria-hidden="true"></i>
+                </span>
+                <span className="menu-text">Services</span>
+              </NavLink>
+            </li>
           </ul>
         </div>
 

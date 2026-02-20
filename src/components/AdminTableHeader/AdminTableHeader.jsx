@@ -33,22 +33,6 @@ const AdminTableHeader = ({
               </a>
             </div>
           )}
-
-          {onExport && (
-            <div className="printmax_btn">
-              <a
-                href="#"
-                className="add-category"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onExport();
-                }}
-              >
-                <span />
-                Export CSV
-              </a>
-            </div>
-          )}
         </div>
 
         <div className="controls-search">

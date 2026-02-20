@@ -34,6 +34,7 @@ const JobsPage = lazy(() => import("./pages/Admin/Jobs/Jobs"));
 const InvoicesPage = lazy(() => import("./pages/Admin/Invoices/Invoices"));
 const CreateInvoicePage = lazy(() => import("./pages/Admin/Invoices/CreateInvoice"));
 const PaidInvoicesPage = lazy(() => import("./pages/Admin/Invoices/PaidInvoices"));
+const AdminServices = lazy(() => import("./pages/Admin/Services/Services"));
 const LowStockPage = lazy(() => import("./pages/Admin/LowStock/LowStock"));
 const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
 
@@ -100,6 +101,7 @@ function AppInner() {
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="category" element={<CategoryPage />} />
             <Route path="products" element={<ProductsPage />} />
+            <Route path="services" element={<AdminServices />} />
             <Route path="low-stock" element={<LowStockPage />} />
             <Route path="jobs" element={<JobsPage />} />
             <Route path="invoices" element={<InvoicesPage />} />

@@ -190,14 +190,19 @@ const JobsPage = () => {
 
         <ViewModal visible={showView} title="Job details" onClose={() => setShowView(false)}>
           {viewItem && (
-            <div>
-              <img src={viewItem.image} alt={viewItem.title} style={{ maxWidth: "100%", marginBottom: 8 }} />
-              <p><strong>ID:</strong> {viewItem.id}</p>
-              <p><strong>Company:</strong> {viewItem.company}</p>
-              <p><strong>Title:</strong> {viewItem.title}</p>
-              <p><strong>Location:</strong> {viewItem.location}</p>
-              <p><strong>Last Date:</strong> {viewItem.lastDate}</p>
-              <p><strong>Description:</strong> {viewItem.description}</p>
+            <div className="view-details">
+              <div className="view-image">
+                <img src={viewItem.image} alt={viewItem.title} />
+              </div>
+
+              <div className="view-meta">
+                <h4 style={{ marginTop: 0 }}>{viewItem.title}</h4>
+                <div className="meta-row"><strong>ID:</strong> <span>{viewItem.id}</span></div>
+                <div className="meta-row"><strong>Company:</strong> <span>{viewItem.company}</span></div>
+                <div className="meta-row"><strong>Location:</strong> <span>{viewItem.location}</span></div>
+                <div className="meta-row"><strong>Last Date:</strong> <span>{viewItem.lastDate}</span></div>
+                <div className="meta-row"><strong>Description:</strong> <span style={{ color: '#374151' }}>{viewItem.description}</span></div>
+              </div>
             </div>
           )}
         </ViewModal>
