@@ -4,6 +4,7 @@ import "../Products/Products.css";
 import ProTable from "../../../components/ProTable/ProTable";
 import AdminTableHeader from "../../../components/AdminTableHeader/AdminTableHeader";
 import ViewModal from "../../../components/Modals/ViewModal";
+import ViewDetails from "../../../components/Modals/ViewDetails";
 
 const sampleLowStock = [
   { id: 101, image: "https://picsum.photos/seed/low1/200/200", product: "Smart Lamp", category: "Electronic", price: 34.75, stock: 8 },
@@ -170,21 +171,12 @@ const LowStock = () => {
 
           <ViewModal visible={showView} title="Product details" onClose={() => setShowView(false)}>
             {viewItem && (
-              <div className="view-details">
-                <div className="view-image">
-                  <img src={viewItem.image} alt={viewItem.product} />
-                </div>
-
-                <div className="view-meta">
-                  <h4 style={{ marginTop: 0 }}>{viewItem.product}</h4>
-                  <div className="meta-row"><strong>Category:</strong> <span>{viewItem.category}</span></div>
-                  <div className="meta-row"><strong>Price:</strong> <span>${Number(viewItem.price).toFixed(2)}</span></div>
-                  <div className="meta-row"><strong>Stock:</strong> <span>{viewItem.stock}</span></div>
-                  <div style={{ marginTop: 12 }}>
-                    <p style={{ color: '#b91c1c', margin: 0 }}><strong>Low stock alert:</strong> This item is below the threshold.</p>
-                  </div>
-                </div>
-              </div>
+              <ViewDetails
+                item={viewItem}
+                imageKey="image"
+                titleKey="product"
+                labels={{ category: 'Category', price: 'Price', stock: 'Stock' }}
+              />
             )}
           </ViewModal>
       </div>

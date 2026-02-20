@@ -5,6 +5,7 @@ import ProTable from "../../../components/ProTable/ProTable";
 import AdminTableHeader from "../../../components/AdminTableHeader/AdminTableHeader";
 import DeleteConfirmModal from "../../../components/Modals/DeleteConfirmModal";
 import ViewModal from "../../../components/Modals/ViewModal";
+import ViewDetails from "../../../components/Modals/ViewDetails";
 import servicesData from "../../../data/services";
 
 const CATEGORY_OPTIONS = [
@@ -193,13 +194,12 @@ const ServicesPage = () => {
 
         <ViewModal visible={showView} title="Service details" onClose={() => setShowView(false)}>
           {viewItem && (
-            <div className="view-details">
-              <div className="view-meta" style={{ flex: '1 1 100%' }}>
-                <h4 style={{ marginTop: 0 }}>{viewItem.title}</h4>
-                <div className="meta-row"><strong>ID:</strong> <span>{viewItem.id}</span></div>
-                <div className="meta-row"><strong>Category:</strong> <span>{viewItem.category}</span></div>
-              </div>
-            </div>
+            <ViewDetails
+              item={viewItem}
+              imageKey="image"
+              titleKey="title"
+              labels={{ id: 'ID', category: 'Category' }}
+            />
           )}
         </ViewModal>
       </div>

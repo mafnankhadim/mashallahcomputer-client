@@ -7,6 +7,7 @@ import AdminTableHeader from "../../../components/AdminTableHeader/AdminTableHea
 import DeleteConfirmModal from "../../../components/Modals/DeleteConfirmModal";
 import AddEditJobModal from "../../../components/Modals/AddEditJobModal";
 import ViewModal from "../../../components/Modals/ViewModal";
+import ViewDetails from "../../../components/Modals/ViewDetails";
 
 const sampleJobs = [
   {
@@ -190,20 +191,12 @@ const JobsPage = () => {
 
         <ViewModal visible={showView} title="Job details" onClose={() => setShowView(false)}>
           {viewItem && (
-            <div className="view-details">
-              <div className="view-image">
-                <img src={viewItem.image} alt={viewItem.title} />
-              </div>
-
-              <div className="view-meta">
-                <h4 style={{ marginTop: 0 }}>{viewItem.title}</h4>
-                <div className="meta-row"><strong>ID:</strong> <span>{viewItem.id}</span></div>
-                <div className="meta-row"><strong>Company:</strong> <span>{viewItem.company}</span></div>
-                <div className="meta-row"><strong>Location:</strong> <span>{viewItem.location}</span></div>
-                <div className="meta-row"><strong>Last Date:</strong> <span>{viewItem.lastDate}</span></div>
-                <div className="meta-row"><strong>Description:</strong> <span style={{ color: '#374151' }}>{viewItem.description}</span></div>
-              </div>
-            </div>
+            <ViewDetails
+              item={viewItem}
+              imageKey="image"
+              titleKey="title"
+              labels={{ id: 'ID', company: 'Company', location: 'Location', lastDate: 'Last Date', description: 'Description' }}
+            />
           )}
         </ViewModal>
       </div>

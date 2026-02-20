@@ -7,6 +7,7 @@ import AdminTableHeader from "../../../components/AdminTableHeader/AdminTableHea
 import DeleteConfirmModal from "../../../components/Modals/DeleteConfirmModal";
 import AddEditProductModal from "../../../components/Modals/AddEditProductModal";
 import ViewModal from "../../../components/Modals/ViewModal";
+import ViewDetails from "../../../components/Modals/ViewDetails";
 
 const sampleProducts = [
   { id: 1, image: "https://picsum.photos/seed/product1/200/200", product: "Kitchen Knife", category: "Cooking", price: 24.99, stock: 32 },
@@ -171,20 +172,12 @@ const ProductsPage = () => {
 
         <ViewModal visible={showView} title="Product details" onClose={() => setShowView(false)}>
           {viewItem && (
-            <div className="view-details">
-              <div className="view-image">
-                <img src={viewItem.image} alt={viewItem.product} />
-              </div>
-
-              <div className="view-meta">
-                <h4 style={{ marginTop: 0 }}>{viewItem.product}</h4>
-                <div className="meta-row"><strong>Category:</strong> <span>{viewItem.category}</span></div>
-                <div className="meta-row"><strong>Price:</strong> <span>${Number(viewItem.price).toFixed(2)}</span></div>
-                <div className="meta-row"><strong>Stock:</strong> <span>{viewItem.stock}</span></div>
-
-                {/* Read-only view: edit action removed for a professional, senior-developer style */}
-              </div>
-            </div>
+            <ViewDetails
+              item={viewItem}
+              imageKey="image"
+              titleKey="product"
+              labels={{ category: 'Category', price: 'Price', stock: 'Stock' }}
+            />
           )}
         </ViewModal>
       </div>

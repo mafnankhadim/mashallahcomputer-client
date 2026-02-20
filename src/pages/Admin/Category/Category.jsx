@@ -6,6 +6,7 @@ import AdminTableHeader from "../../../components/AdminTableHeader/AdminTableHea
 import DeleteConfirmModal from "../../../components/Modals/DeleteConfirmModal";
 import AddEditCategoryModal from "../../../components/Modals/AddEditCategoryModal";
 import ViewModal from "../../../components/Modals/ViewModal";
+import ViewDetails from "../../../components/Modals/ViewDetails";
 
 const sampleData = [
   { id: 1, category: "Cooking", code: "E23436" },
@@ -123,10 +124,11 @@ const CategoryPage = () => {
 
         <ViewModal visible={showView} title="Category details" onClose={() => setShowView(false)}>
           {viewItem && (
-            <div>
-              <p><strong>Category:</strong> {viewItem.category}</p>
-              <p><strong>Code:</strong> {viewItem.code}</p>
-            </div>
+            <ViewDetails
+              item={viewItem}
+              titleKey="category"
+              labels={{ code: 'Code' }}
+            />
           )}
         </ViewModal>
 
