@@ -18,10 +18,11 @@
 	.controls-search .category-select { flex: 0 0 36%; min-width: 120px; }
 	.controls-search .table-search { flex: 1 1 auto; min-width: 0; }
 
-	/* Row 2: actions (add/export) — force two buttons to share the row */
+	/* Row 2: actions (add/export) — force buttons to fill the row on small screens */
 	.controls-actions { order: 2; display: flex; gap: 8px; justify-content: center; width: 100%; flex-wrap: nowrap; }
-	.printmax_btn { flex: 0 0 48%; }
-	.printmax_btn .add-category { width: 100%; }
+	/* make each action grow so buttons fill available space evenly */
+	.printmax_btn { flex: 1 1 100%; min-width: 0; }
+	.printmax_btn .add-category { display: inline-flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; }
 }
 
 /* Shared category-select pill styling (used by Products and Jobs headers) */
