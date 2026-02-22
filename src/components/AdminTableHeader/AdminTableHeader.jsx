@@ -1,5 +1,6 @@
 import React from "react";
 import "./AdminTableHeader.css";
+import CustomSelect from "../CustomSelect/CustomSelect";
 
 const AdminTableHeader = ({
   title,
@@ -11,6 +12,8 @@ const AdminTableHeader = ({
   onExport,
   globalFilter,
   onGlobalFilterChange,
+  // if provided, use this prop to render the custom dropdown
+  customSelectOptions,
 }) => {
   return (
     <div className="table-heading-wrap">
@@ -37,18 +40,16 @@ const AdminTableHeader = ({
 
         <div className="controls-search">
           {categories && categories.length > 0 && (
-            <select
-              className="category-select"
-              value={selectedCategory}
-              onChange={(e) => onCategoryChange && onCategoryChange(e.target.value)}
-              aria-label="Filter by category"
-            >
-              {categories.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
+            <CustomSelect
+              options={
+                (customSelectOptions && customSelectOptions.options) ||
+                categories.map((c) => ({ value: c, label: c }))
+              }
+              value={(customSelectOptions && customSelectOptions.value) ?? selectedCategory}
+              onChange={(v) => (customSelectOptions && customSelectOptions.onChange) ? customSelectOptions.onChange(v) : onCategoryChange && onCategoryChange(v)}
+              placeholder={(customSelectOptions && customSelectOptions.placeholder) || 'Category'}
+              className="category-custom"
+            />
           )}
 
           <input
