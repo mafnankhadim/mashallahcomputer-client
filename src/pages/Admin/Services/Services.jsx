@@ -14,12 +14,12 @@ const CATEGORY_OPTIONS = [
 ];
 
 const AddEditServiceModal = ({ visible, onClose, onSave, initialData }) => {
-  const [form, setForm] = useState({ title: "", category: CATEGORY_OPTIONS[0] });
+  const [form, setForm] = useState({ title: "", category: CATEGORY_OPTIONS[0], description: "" });
 
   React.useEffect(() => {
     if (initialData)
-      setForm({ title: initialData.title || "", category: initialData.category || CATEGORY_OPTIONS[0] });
-    else setForm({ title: "", category: CATEGORY_OPTIONS[0] });
+      setForm({ title: initialData.title || "", category: initialData.category || CATEGORY_OPTIONS[0], description: initialData.description || "" });
+    else setForm({ title: "", category: CATEGORY_OPTIONS[0], description: "" });
   }, [initialData, visible]);
 
   if (!visible) return null;
@@ -53,6 +53,10 @@ const AddEditServiceModal = ({ visible, onClose, onSave, initialData }) => {
                 ))}
               </select>
             </div>
+            <div style={{ gridColumn: '1 / -1' }}>
+              <label>Description</label>
+              <textarea placeholder="Short description" value={form.description} onChange={(e) => setForm((s) => ({ ...s, description: e.target.value }))} rows={4} />
+            </div>
           </div>
         </div>
 
@@ -60,7 +64,7 @@ const AddEditServiceModal = ({ visible, onClose, onSave, initialData }) => {
           <button className="btn secondary" onClick={onClose}>Cancel</button>
           <button className="btn primary" onClick={() => {
             if (!form.title) { alert("Please enter a title"); return; }
-            onSave && onSave({ ...initialData, title: form.title, category: form.category });
+            onSave && onSave({ ...initialData, title: form.title, category: form.category, description: form.description });
           }}>Save</button>
         </div>
       </div>
@@ -98,6 +102,19 @@ const ServicesPage = () => {
           {getValue()}
         </span>
       ),
+    },
+    {
+      header: "Description",
+      accessorKey: "description",
+      cell: ({ row, getValue }) => {
+        const text = String(getValue() || "");
+        const short = text.length > 80 ? text.slice(0, 77) + '...' : text;
+        return (
+          <span className="product-desc" title={text} onClick={() => { setViewItem(row.original); setShowView(true); }}>
+            {short}
+          </span>
+        );
+      }
     },
     { header: "Category", accessorKey: "category" },
     {
